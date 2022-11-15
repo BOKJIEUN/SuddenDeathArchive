@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&family=Raleway:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+
+
+	<title>SDA - Sudden Death Archive</title>
+	<style type="text/css">
+
+		body{background: black; 
+			width: 100vw; height: 100vh; 
+			margin: 0;
+			display: flex;
+			background-image: url(mainBG.png);
+			background-repeat: no-repeat;
+			background-size: contain;
+
+			/* 페이지 전환 효과 fade in - fade out */
+			opacity: 1;
+			transition-duration: 1s;
+			transition-property: opacity;
+  			}
+  			body.fade {
+    		opacity: 0;
+			}
+
+		.container{/*background: CadetBlue;*/
+			margin: 0;
+			width: 90%; height: 97%; 
+			display: flex;
+			position: absolute; left: 50%; transform: translateX(-50%);}
+
+
+		.text-area{color: #7B7B7B; width: 35%; height: 97%;}
+		h1{margin: 0; padding-top: 3%;
+			font-size: 5.5vw; 
+			font-family: 'Raleway', sans-serif; 
+			font-weight: 400;
+			line-height: 12vh;
+			flex-wrap: wrap;
+			padding-top: 45%;
+		}
+
+		h2{margin: 0; padding-top: 1%;
+			font-size: 1.7vw; 
+			font-family: 'Noto Sans KR', sans-serif;
+			font-weight: 400;
+		}
+
+		.img-area{width: 65%; height: 97%; margin-top: 3%;
+
+
+		}
+		nav{margin: 0; width: 90vw; height: 15vh;
+			display: flex;
+			z-index: 30; position: absolute;
+			color: white;
+			font-family: 'Raleway', sans-serif; 
+			font-weight: 400;
+			padding-top: 3%;
+			left: 5.5vw;
+			justify-content:space-between;
+			}
+
+		p{margin: 0;}
+		.nav1{margin: 0;
+			width: 13%; display: inline-block;
+			font-size: 1.4vw;}
+		a{text-decoration: none; color: white;}
+
+		/*마우스 오버 시 밑줄*/
+		a:after{display: block;
+				content: '';
+				width: 35%;
+				border-bottom: solid 1.5px white;
+				padding-bottom: 3px;  
+  				transform: scaleX(0);  
+  				transition: transform 250ms ease-in-out;
+				}
+		a:hover:after { transform: scaleX(1);}}
+
+		.nav-p{margin: 0; word-break: keep-all;}
+
+		.nav2{margin: 0;
+			width:50%; 
+			font-size: 1.4vw;}
+
+		.nav3{width: 15%;
+			font-family: 'Noto Sans KR', sans-serif;
+			font-size: 0.7vw; }
+		.nav4{width: 10%; 
+			font-size: 0.8vw; line-height: 1.8vh; }
+
+		/* 지도 위 점들 */
+		.d{border-radius: 50%; background:#00FF00; 
+		position: absolute; z-index: 30;
+		box-shadow:0 0 15px #00FF00;
+		}
+		/*.d:hover{box-shadow:0 0 15px #00FF00;}*/
+		
+		/*점 점멸효과*/
+		@keyframes blink-effect {50% {opacity: 0;}
+		}
+		.blink1 {animation: blink-effect 1s step-end infinite;
+		}
+		@keyframes blink-effect {50% {opacity: 0;}
+		}
+		.blink2 {animation: blink-effect 1.2s step-end infinite;
+		}
+		@keyframes blink-effect {50% {opacity: 0;}
+		}
+		.blink3 {animation: blink-effect 1.4s step-end infinite;
+		}
+
+
+		#d1{width: 32px; height: 32px; top: 10%; left: 43%;
+		}
+		#d9{width: 50px; height: 50px; top: 12%; left: 45%;
+		}
+		#d10{width: 20px; height: 20px; top: 7%; left: 45%;
+		}
+		#d11{width: 23px; height: 23px; top: 8%; left: 42%;
+		}
+
+		#d2{width: 68px; height: 68px; top: 10%; left: 65%;
+		}
+		#d3{width: 53px; height: 53px; top: 75%; left: 52%;
+		}
+		#d4{width: 28px; height: 28px; top: 70%; left: 55%;
+		}
+		#d5{width: 31px; height: 31px; top: 35%; left: 70%;
+		}
+		#d6{width: 40px; height: 40px; top: 20%; left: 64%;
+		}
+		#d7{width: 23px; height: 23px; top: 80%; left: 78%;
+		}
+		#d8{width: 49px; height: 49px; top: 50%; left: 50%;
+		}
+		#d12{width: 35px; height: 35px; top: 75%; left: 76%;
+		}
+
+
+}
+
+
+
+	</style>
+
+</head>
+<body>
+
+	<main class="container">
+		<section class="text-area">
+			<h1>For Sudden Died People Memorial Web Archive</h1>
+			<h2>돌연사 아카이브</h2>
+		</section>
+
+		<section class="img-area">
+			<div  class="d blink3" id="d1"></div>
+			<div  class="d blink1" id="d2"></div>
+			<div  class="d blink2" id="d3"></div>
+			<div  class="d blink1" id="d4"></div>
+			<div  class="d blink3" id="d5"></div>
+			<div  class="d blink2" id="d6"></div>
+			<div  class="d blink1" id="d7"></div>
+			<div  class="d blink2" id="d8"></div>
+			<div  class="d blink1" id="d9"></div>
+			<div  class="d blink3" id="d10"></div>
+			<div  class="d blink1" id="d11"></div>
+			<div  class="d blink2" id="d12"></div>
+		</section>	
+	</main>
+
+	<nav>
+		<section class="nav1">
+    		<p class="nav-p"><a href="about.html">About</a></p>
+    		<p class="nav-p" style="padding-top: 10%"><a href=" ">Map</a></p>
+    	</section>
+    	<section class="nav2">
+    		<p class="nav-p">Sudden Death Archive</p>
+    		<p class="nav-p" style="padding-top: 3%">Remember Laborers</p>
+    	</section>
+    	<section class="nav3">
+    		<p class="nav-p">본 웹 페이지는 정세랑의 단편소설 <보늬>에 등장하는 웹 페이지인
+    		‘돌연사.net’을 모티프로 하여 제작되었음을 밝힙니다.</p>
+    	</section>
+    	<section class="nav4">
+    		<p class="nav-p">Based on Serang Chung</p>
+    		<p class="nav-p" style="margin-top: 10%">Designed by Bok Jieun</p>
+    	</section>
+	</nav>
+
+<script>
+
+ 	//페이지 전환 효과 fade in - fade out
+     document.body.classList.add('fade');
+     document.addEventListener('DOMContentLoaded', () => {
+     window.setTimeout(() => {
+     document.body.classList.remove('fade');
+      });
+    });
+
+
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
