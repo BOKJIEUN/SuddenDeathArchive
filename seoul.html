@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&family=Raleway:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+	<title>SDA - Seoul Map</title>
+
+	<style type="text/css">
+		body{background: black; 
+			width: 100vw; height: 100vh; 
+			margin: 0;
+			display: flex;
+			/*overflow-x:hidden;*/
+
+			/* 페이지 전환 효과 fade in - fade out */
+			opacity: 1;
+			transition-duration: 1s;
+			transition-property: opacity;
+  			}
+  			body.fade {
+    		opacity: 0;
+			}
+		/*스크롤바 없애기*/
+		body{
+			 -ms-overflow-style: none;
+ 		}
+ 
+		::-webkit-scrollbar {
+  		display: none;
+  		}
+
+		.container{/*background: CadetBlue;*/
+			margin: 0;
+			width: 87%; height: 97%; 
+			display: flex;
+			position: absolute; left: 50%; transform: translateX(-50%);
+			z-index: 30;
+			}
+		img{margin: auto;
+    		display: block;
+			width: 63%;}
+
+		/* 지도 위 점들 */
+		.d{border-radius: 50%; background:#00FF00; 
+		position: absolute;
+		box-shadow:0 0 15px #00FF00;
+		} 
+		.d:hover{background: white;
+				box-shadow:0 0 15px white;}
+
+		#d1{width: 30px; height: 30px; top: 20%; left: 60%;
+		}
+		#d2{width: 20px; height: 20px; top: 32%; left: 43%;
+		}
+		#d3{width: 28px; height: 28px; top: 45%; left: 39%;
+		}
+		#d4{width: 40px; height: 40px; top: 35%; left: 50%;
+		}
+		#d5{width: 68px; height: 68px; top: 42%; left: 28%;
+		}
+		#d6{width: 32px; height: 32px; top: 55%; left: 41%;
+		}
+		#d7{width: 23px; height: 23px; top: 50%; left: 54%;
+		}
+		#d8{width: 53px; height: 53px; top: 80%; left: 45%;
+		}
+		#d9{width: 20px; height: 20px; top: 77%; left: 48%;
+		}
+		#d10{width: 31px; height: 31px; top: 75%; left: 42%;
+		}
+		#d11{width: 18px; height: 18px; top: 83%; left: 42%;
+		}
+		#d12{width: 25px; height: 25px; top: 87%; left: 44%;
+		}
+		#d13{width: 23px; height: 23px; top: 76%; left: 68%;
+		}
+		#d14{width: 35px; height: 35px; top: 58%; left: 77%;
+		}
+		#d15{width: 42px; height: 42px; top: 44%; left: 55%;
+		}
+		#d16{width: 48px; height: 48px; top: 65%; left: 27%;
+		}
+
+		/*정보값 박스*/
+		#infoBox{width: 20%; height: auto; 
+			position: absolute; z-index: 50;
+			padding: 1%;
+			word-break: keep-all;
+			text-align: center;
+			color: white;
+			font-family: 'NotoSans', sans-serif;
+			font-weight: 500; font-size: 1.2vw;
+			line-height: 1.8vw;}
+
+
+		/*nav 스타일링*/
+		nav{margin: 0; width: 90vw; height: 15vh;
+			display: flex;
+			z-index: 30; position: absolute;
+			color: white;
+			font-family: 'Raleway', sans-serif; 
+			font-weight: 400;
+			padding-top: 3%;
+			left: 5.5vw;
+			justify-content:space-between;
+			}
+
+		p{margin: 0;}
+		.nav1{margin: 0;
+			width: 13%; display: inline-block;
+			font-size: 1.4vw;}
+		a{text-decoration: none; color: white;}
+
+		/*마우스 오버 시 밑줄*/
+		.underline:after{display: block;
+				content: '';
+				width: 35%;
+				border-bottom: solid 1.5px white;
+				padding-bottom: 3px;  
+  				transform: scaleX(0);  
+  				transition: transform 250ms ease-in-out;
+				}
+		.underline:hover:after { transform: scaleX(1);}}
+
+		.nav-p{margin: 0; word-break: keep-all;}
+
+		.nav2{margin: 0;
+			width:40%; 
+			font-size: 1.4vw;}
+
+		.nav3{width: 20%;
+			font-family: 'Noto Sans KR', sans-serif;
+			font-size: 1vw; }
+		.nav4{width: 13%; 
+			font-size: 1vw; line-height: 1.8vh; }
+
+		/*나브 바 마우스 오버 시 컬러 체인지*/
+		.changeColor:hover{color: #00FF00;}
+
+
+		/* 사이드 바 스타일링*/
+		#activeBtn{
+		font-family: 'Raleway', sans-serif;
+		color: #00FF00;
+		font-size: 1.4vw;
+		position: absolute;
+		right: 5.5vw;
+		padding-top: 3%;
+		z-index: 100;
+		}
+		.side_menu{
+		position: absolute;
+		z-index: 100;
+		color: black;
+		font-family: 'NotoSans', sans-serif;
+    	font-weight: 300;
+    	width: 20%;
+    	height: 100vh;
+    	background: white;
+	    padding-top: 13%;
+	    text-align: center;
+	    box-sizing: border-box;
+	    overflow: hidden; /* 반응형 애니메이션용 */
+	    transition: all 0.5s ease; /* 반응형 애니메이션 */
+		}
+		.side_menu input[type=text], select{
+				margin-bottom: 7%;
+				width: 85%; height: 5vh; text-align: center;
+				border: 1px solid black; border-radius: 20px; outline: none;
+				background: white; color: black;
+				word-break: keep-all;
+				font-size: 1vw;
+		}
+		.side_menu input[type=button]{ 
+				margin: 0;
+				width: 85%; height: 5vh; text-align: center;
+				border: 0; border-radius: 20px; outline: none;
+				background: #00FF00; color: black;
+				font-size: 1vw;
+		}
+		/*.close {width:50px;height: 50px;}
+		.close:before, .close:after 
+		{position: absolute; 
+		right: 13%; top: 3%;
+		content:' ';
+		height: 25px;width: 1.3px;
+		background-color: #000;}
+		.close:before {transform: rotate(45deg);}
+		.close:after {transform: rotate(-45deg);}
+		*/
+
+		/*사이드바 활성, 비활성화*/
+		#sideMenu{right: -20%;}	
+
+	</style>
+
+</head>
+
+<body>
+	<!--사이드 바-->
+    	<div id="activeBtn">Archive</div>
+    	<div class="side_menu" id="sideMenu">
+    		<div class="close" id="close"></div>
+	        <input type="text" id="putName" placeholder="이름">
+			<input type="text" id="putAge" placeholder="사망나이 (숫자만)">
+			<input type="text" id="putYear" placeholder="사망연도 (끝 두 자리만)">
+			<select id="putReg">
+				<option value="15">건설업</option>
+    			<option value="25">제조업</option>
+   				<option value="35">서비스업</option>
+    			<option value="45">배달노동자</option>
+    			<option value="52">운수, 창고, 통신업</option>
+    			<option value="59">일반 사무직</option>
+    			<option value="66">전기, 가스 및 수도업</option>
+    			<option value="73">어업 및 농업</option>
+    			<option value="80">금융업</option>
+    			<option value="87">기타</option>
+		</select>
+			<input type="text" id="putWhy" placeholder="사망 원인">
+			<input type="button" id="myButton" value="생성">
+	    </div>
+
+	<main class="container" id="container">
+		<div id="infoBox"></div>
+
+		<div class="d" id="d1"
+		data-name="이보늬" data-age="30" data-why="과중한 업무량, 잦은 야근과 과로"></div>
+
+		<div class="d" id="d2" 
+		data-name="윤희상" data-age="20" data-why="포장재 공장에서 일하던 중 기계에 몸이 끼는 사고 발생"></div>
+
+		<div class="d" id="d3"
+		data-name="시지트 레스탈루" data-age="28" data-why="외국인 노동자 신분으로 종이 박스 공장에서 혹사"></div>
+
+		<div class="d" id="d4"
+		data-name="최창민" data-age="40" data-why="아파트 재개발 정비 공사장에서 추락"></div>
+
+		<div class="d" id="d5"
+		data-name="윤희상" data-age="68" data-why="월드컵대교 공사현장에서 추락"></div>
+
+		<div class="d" id="d6"
+		data-name="신미래" data-age="32" data-why="택배 노동자 가혹 근무"></div>
+
+		<div class="d" id="d7"
+		data-name="백영민" data-age="23" data-why="배달기사 근무 중 교통사고"></div>
+
+		<div class="d" id="d8"
+		data-name="이희옥" data-age="53" data-why="건설현장 청소 중 승강기에 깔려서"></div>
+
+		<div class="d" id="d9"
+		data-name="김지산" data-age="20" data-why="야간 아르바이트 도중 갑작스러운 심정지"></div>
+
+		<div class="d" id="d10"
+		data-name="정철수" data-age="31" data-why="스크린도어 장비 교체 중 진입하던 열차에 치여서"></div>
+
+		<div class="d" id="d11"
+		data-name="이나리" data-age="18" data-why="특성화고 재학 중 현장실습을 나갔다가 장비 사고 발생"></div>
+
+		<div class="d" id="d12"
+		data-name="김동현" data-age="25" data-why="근무하던 공장에 화재 발생"></div>
+
+		<div class="d" id="d13"
+		data-name="박지현" data-age="23" data-why="전기 자전거로 배달노동 중 교통사고"></div>
+
+		<div class="d" id="d14"
+		data-name="김종욱" data-age="35" data-why="계속된 새벽배송 기사 근무로 인한 급성심근경색"></div>
+
+		<div class="d" id="d15"
+		data-name="정지혁" data-age="42" data-why="21시간째 화물차 운전을 하다 앞 차와 충돌"></div>
+
+		<div class="d" id="d16"
+		data-name="이명지" data-age="48" data-why="군부대 공사장에서 붕괴된 토사에 깔려서"></div>
+
+		<img src="seoul-big.png">
+	</main>
+
+	<nav>
+		<section class="nav1">
+    		<p class="nav-p"><a href="index.html" class="underline">Home</a></p>
+    		<p class="nav-p" style="padding-top: 10%"><a href="about.html" class="underline">About</a></p>
+    	</section>
+    	<section class="nav2">
+    		<p class="nav-p">
+    			<a href="map.html" class="changeColor">Total View</a></p>
+    		<p class="nav-p" style="padding-top: 3%">
+    			<a href="region.html" style="color: #00FF00;">Region View</a></p>
+    	</section>
+    	<section class="nav3">
+    		<p class="nav-p"></p>
+    	</section>
+    	<section class="nav4">
+    		<p></p>
+    	</section>
+	</nav>
+
+	<script type="text/javascript">
+		//페이지 전환 효과 fade in - fade out
+     document.body.classList.add('fade');
+     document.addEventListener('DOMContentLoaded', () => {
+     window.setTimeout(() => {
+     document.body.classList.remove('fade');
+      });
+    });
+
+    //사이드 바(유저가 점 생성)
+   myButton.onclick = function(){
+        var dot = document.createElement("div");
+        var dotWidth = 0 + Number(putAge.value);
+        var dotLeft = 3.1 * Number(putYear.value);
+        var dotTop = 0 + Number(putReg.value);
+
+        dot.id = "newDot" 
+        dot.style.background= "yellow";
+        dot.style.width = dotWidth + "px";
+        dot.style.height = dotWidth + "px";
+        dot.style.left = dotLeft + "%";
+        dot.style.top = dotTop + "%";
+        dot.style.borderRadius = "50%"; 
+        dot.style.boxShadow = "0px 0px 12px yellow"; 
+        dot.style.position = "absolute";
+        dot.style.zIndex= "100";
+        //
+        dot.dataset.name = putName.value;
+        dot.dataset.age = putAge.value;
+        dot.dataset.why = putWhy.value;
+                            
+	    dot.onmouseover = function(e){
+	    //infoBox안에 내용 생성, infoBox 스타일링
+	    let myName = this.dataset.name;
+	    let myAge = this.dataset.age;
+	    let myWhy = this.dataset.why;
+	    infoBox.innerHTML = myName + "씨는 " + myAge + "세의 나이로 사망하셨습니다." + " 사망원인은 " 				+ myWhy + "입니다." 
+	    infoBox.style.boxShadow = "0px 0px 12px white";
+		infoBox.style.border = "1px solid white";
+		infoBox.style.background = "black";
+
+		//infoBox 좌표
+		mousemove();
+		function mousemove(e){
+		   	var x = event.clientX;
+		   	var y = event.clientY;
+			infoBox.style.left = x + "px";
+		    infoBox.style.top = y + "px";
+		    }
+		}
+		dot.onmouseout = function(e){
+			infoBox.innerHTML = "";
+			infoBox.style.boxShadow = "none";
+			infoBox.style.border = "none";
+			infoBox.style.background = "none";
+			}; 
+		
+		
+	container.appendChild(dot);
+    }
+
+
+     //기존 점들 마우스 오버
+    let dotList = ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", 
+    		"d9", "d10", "d11", "d12", "d13", "d14", "d15", "d16"];
+    //반복
+	    for(let i=0; i<dotList.length; i++){
+	    //마우스 오버 시 텍스트 뜨게
+	    	var dothover =  document.getElementById(dotList[i]);
+			dothover.onmouseover = function(e){
+				var a = this.dataset.name
+		   		var b = this.dataset.age
+		    	var c = this.dataset.why
+		    	//infoBox 내용
+				infoBox.innerHTML = 
+				a + "씨는 " + b + "세의 나이로 사망하셨습니다." + " 사망원인은 " + c + "입니다.";
+				infoBox.style.boxShadow = "0px 0px 12px white";
+				infoBox.style.border = "1px solid white";
+				infoBox.style.background = "black";
+
+				//infoBox 좌표
+				mousemove();
+		    	function mousemove(e){
+		    		var x = event.clientX;
+		    		var y = event.clientY;
+		    	infoBox.style.left = (x-30) + "px";
+		    	infoBox.style.top = (y-30) + "px";
+		    	}
+			};
+			dothover.onmouseout = function(e){
+				infoBox.innerHTML = "";
+				infoBox.style.boxShadow = "none";
+				infoBox.style.border = "none";
+				infoBox.style.background = "none";
+			};
+		}
+	//사이드바 활성, 비활성화
+	activeBtn.onclick = function(){
+		sideMenu.style.right = "0";
+	}
+	//close.onclick = function(){
+		//sideMenu.style.right = 0 - 20 + "%"
+	//}
+	container.onclick = function(){
+		sideMenu.style.right = 0 - 20 + "%"
+	}
+    </script>
+
+
+</body>
+</html>

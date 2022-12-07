@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&family=Raleway:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+
+
+	<title>SDA - Sudden Death Archive</title>
+	<style type="text/css">
+
+		body{background: black; 
+			width: 100vw; height: 100vh; 
+			margin: 0;
+			display: flex;
+			
+			/* 페이지 전환 효과 fade in - fade out */
+			opacity: 1;
+			transition-duration: 1s;
+			transition-property: opacity;
+  			}
+  			body.fade {
+    		opacity: 0;
+ 			}
+
+		.container{/*background: CadetBlue;*/
+			margin: 0;
+			width: 90%; height: auto; 
+			display: flex;
+			position: absolute; left: 50%; transform: translateX(-50%);
+			justify-content:space-between;
+			}
+
+
+		.h-area{width: 30%; height: 97%;}
+		h1{margin: 0;
+			font-size: 9vw; 
+			font-family: 'Noto Sans KR', sans-serif; 
+			font-weight: 400;
+			line-height: 19vh;
+			flex-wrap: wrap;
+			padding-top: 41%;
+			color: #00FF00;
+		}
+		h2{margin: 0; padding-top: 10%;
+			font-size: 2.5vw; 
+			font-family: 'Noto Sans KR', sans-serif;
+			font-weight: 400;
+			color: #7B7B7B;;
+		}
+
+		.p-area{width: 37.1%; height: auto; 
+			font-size: 1.2vw;
+			line-height: 3.5vh;
+			color: white;
+			margin-top: 11%;
+			margin-bottom: 5%;
+			word-break: keep-all;
+			right: 0;
+		}
+		p{margin: 0;}
+		.p-margin{margin-bottom: 6%;}
+
+		/* nav 스타일 고정*/
+		nav{margin: 0; width: 90vw; height: 15vh;
+			display: flex;
+			z-index: 30; position: absolute;
+			color: white;
+			font-family: 'Raleway', sans-serif; 
+			font-weight: 400;
+			padding-top: 3%;
+			left: 5.5vw;
+			 justify-content:space-between;
+			}
+
+		.nav1{margin: 0;
+			width: 13%; display: inline-block;
+			font-size: 1.4vw;}
+		a{text-decoration: none; color: white;}
+		/*마우스 오버 시 밑줄*/
+		a:after{display: block;
+				content: '';
+				width: 35%;
+				border-bottom: solid 1.5px white;
+				padding-bottom: 3px;  
+  				transform: scaleX(0);  
+  				transition: transform 250ms ease-in-out;
+				}
+		a:hover:after { transform: scaleX(1);}}
+		.nav-p{margin: 0; word-break: keep-all;}
+		.nav2{margin: 0;
+			width:40%; 
+			font-size: 1.4vw;}
+
+		.nav3{width: 20%;
+			font-family: 'Noto Sans KR', sans-serif;
+			font-size: 0.9vw; }
+		.nav4{width: 13%; 
+			font-size: 1vw; line-height: 1.8vh; }
+
+
+	</style>
+
+</head>
+<body>
+	<div class="blurCousor"></div>
+
+	<main class="container">
+		<section class="h-area">
+			<h1>돌연사<br>突然死</h1>
+			<h2>일상생활을 하던<br>건강한 사람이<br>갑자기 급사하는 일</h2>
+		</section>
+
+		<section class="p-area">
+			<p style="font-family: 'Noto Sans KR', sans-serif;" class="p-margin">돌연히, 갑작스레 사망하는 노동자들의 소식이 매일 매일 포털사이트에 업데이트 된다. 하지만 기사화된 것 보다 많은 수의 노동자 사망 사고가 가시화되지 않은 채 사라진다. 사업장의 규모에 따라 산재로 집계되지 않는 죽음도 많다. 잦은 심야 근무, 압박감과 스트레스는 급성 심장 질환에 치명적이다. 나이에 상관 없이 일을 하다 죽는 사람이 생겨나는 이유이다. 노동의 강도 뿐 아니라 제대로 개선되지 않는 노동 환경과 노동자들에 대한 처우 역시 돌연사를 증가시키는 원인이다. 사업주들은 노동자들의 사망 원인을 찾기 보다는, 빨리 처리하고 관계를 끊으려한다.</p>
+			<p style="font-family: 'Noto Sans KR', sans-serif;" class="p-margin">이렇게 잊혀져 가는 죽음이 얼마나 될까? 아주 가까운 이의 죽음이 아닌 이상 우리는 어쩔 수 없이 죽음에서 멀어진다. 본 웹페이지는 그러한 현상을 조금이나마 개선하기 위해 만들어졌다. 실제 보도된 뉴스를 바탕으로, 돌연사한 노동자들의 정보값을 일정 규칙에 따라 시각화하여 시각적인 지도로 표현하였다. 그 밖의 지역별 사망 통계나 사고 현황 등의 수치는 고용노동부가 실시한 '산업재해 사고사망 현황 발표'를 참고하여 만들어졌다. (2022년 11월 15일 기준) 또한 방문자들이 자신이 아는 또 다른 노동자의 죽음을 기록할 수 있게끔하였다. 이를 통해 내가, 네가, 우리가 될 수도 있는 노동자의 죽음에 대한 관심이 촉구되기를 바란다. </p>
+			<p style ="font-family: 'Raleway', sans-serif;" class="p-margin">The news of the laborer’s sudden death are updated every day. In addition to intensive labor, the unsafe environment and unjustified treatment of  laborer are the causes of sudden death. Instead of finding the cause of workers’ deaths, Companies try to expedite and sever relationships.</p>
+			<p style ="font-family: 'Raleway', sans-serif;" class="p-margin">How many deaths will be forgotten like this? Based on real news, this web page visualizes the information values of laborer who suddenly died according to certain rules and expresses them as visualized maps. It also allowed visitors to archive the death of another workers. I hope that this will encourage an interest in the death of laborers.</p>
+		</section>	
+
+	</main>
+
+	<!-- nav 고정 -->
+	<nav>
+		<section class="nav1">
+    		<p class="nav-p"><a href="index.html">Home</a></p>
+    		<p class="nav-p" style="padding-top: 10%"><a href="map.html">Map</a></p>
+    	</section>
+    	<section class="nav2">
+    		<p class="nav-p">Sudden Death Archive</p>
+    		<p class="nav-p" style="padding-top: 3%">Remember Laborers</p>
+    	</section>
+    	<section class="nav3">
+    		<p class="nav-p">본 웹 페이지는 정세랑의 단편소설 <보늬>에 등장하는 웹 페이지인
+    		‘돌연사.com’을 모티프로 하여 제작되었음을 밝힙니다.</p>
+    	</section>
+    	<section class="nav4">
+    		<p class="nav-p">Based on Serang Chung</p>
+    		<p class="nav-p" style="margin-top: 10%">Designed by Bok Jieun</p>
+    	</section>
+	</nav>
+
+ <script>
+ 	//페이지 전환 효과 fade in - fade out
+     document.body.classList.add('fade');
+     document.addEventListener('DOMContentLoaded', () => {
+     window.setTimeout(() => {
+     document.body.classList.remove('fade');
+      });
+    });
+
+      //커서 
+     const cousor = document.querySelector('.blurCousor');
+
+   	 const animateCursor = (e) => {
+        cousor.style.left = `${e.pageX}px`;
+        cousor.style.top = `${e.pageY}px`;
+   	 }
+    	window.addEventListener('mousemove', animateCursor);
+
+  </script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

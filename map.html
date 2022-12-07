@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&family=Raleway:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+	<title>SDA - Total Map</title>
+
+	<style type="text/css">
+
+		body{background: black; 
+			width: 100vw; height: 100vh; 
+			margin: 0;
+			display: flex;
+
+			/* 페이지 전환 효과 fade in - fade out */
+			opacity: 1;
+			transition-duration: 1s;
+			transition-property: opacity;
+  			}
+  			body.fade {
+    		opacity: 0;
+			}
+		/*스크롤바 없애기*/
+		body{
+		 -ms-overflow-style: none;
+ 		}
+ 		::-webkit-scrollbar {
+  		display: none;
+  		}
+		.container{/*background: CadetBlue;*/
+			margin: 0;
+			width: 90%; height: 97%; 
+			display: flex;
+			position: absolute; left: 50%; transform: translateX(-50%);
+			overflow: auto;
+			}
+
+
+		.text-area{color: #7B7B7B; width: 30%; height: 97%;}
+
+		.img-area{width: 70%; height: 97%; margin-top: 3%;
+		}
+		img{width: 90%; height: auto;
+			object-fit: cover;}
+
+		/* 지도 위 점들 */
+		.d{border-radius: 50%; background:#00FF00; 
+		position: absolute; z-index: 30;
+		box-shadow:0 0 15px #00FF00;
+		}
+
+		/*서울*/
+		#d1{width: 50px; height: 50px; top: 30%; left: 40%;
+		}
+		#d2{width: 20px; height: 20px; top: 27%; left: 43%;
+		}
+		#d3{width: 28px; height: 28px; top: 25%; left: 39%;
+		}
+		/*경기*/
+		#d4{width: 40px; height: 40px; top: 35%; left: 50%;
+		}
+		#d5{width: 68px; height: 68px; top: 42%; left: 48%;
+		}
+		#d6{width: 32px; height: 32px; top: 45%; left: 45%;
+		}
+		#d7{width: 40px; height: 40px; top: 50%; left: 54%;
+		}
+		/*전라*/
+		#d8{width: 53px; height: 53px; top: 95%; left: 52%;
+		}
+		#d9{width: 28px; height: 28px; top: 90%; left: 55%;
+		}
+		/*강원*/
+		#d10{width: 31px; height: 31px; top: 35%; left: 70%;
+		}
+		#d11{width: 18px; height: 18px; top: 46%; left: 78%;
+		}
+		/*충청*/
+		#d12{width: 25px; height: 25px; top: 65%; left: 64%;
+		}
+		/*경상*/
+		#d13{width: 23px; height: 23px; top: 95%; left: 78%;
+		}
+		#d14{width: 35px; height: 35px; top: 105%; left: 80%;
+		}
+		/*제주*/
+		#d15{width: 42px; height: 42px; top: 150%; left: 55%;
+		}
+
+		/*nav 스타일링*/
+		nav{margin: 0; width: 90vw; height: 15vh;
+			display: flex;
+			z-index: 30; position: absolute;
+			color: white;
+			font-family: 'Raleway', sans-serif; 
+			font-weight: 400;
+			padding-top: 3%;
+			left: 5.5vw;
+			justify-content:space-between;
+			}
+
+		p{margin: 0;}
+		.nav1{margin: 0;
+			width: 13%; display: inline-block;
+			font-size: 1.4vw;}
+		a{text-decoration: none; color: white;}
+
+		/*마우스 오버 시 밑줄*/
+		.underline:after{display: block;
+				content: '';
+				width: 35%;
+				border-bottom: solid 1.5px white;
+				padding-bottom: 3px;  
+  				transform: scaleX(0);  
+  				transition: transform 250ms ease-in-out;
+				}
+		.underline:hover:after { transform: scaleX(1);}}
+
+		.nav-p{margin: 0; word-break: keep-all;}
+
+		.nav2{margin: 0;
+			width:40%; 
+			font-size: 1.4vw;}
+
+		.nav3{width: 20%;
+			font-family: 'Noto Sans KR', sans-serif;
+			font-size: 1vw;
+			line-height: 3vh }
+		.nav4{width: 13%;
+			font-family: 'Noto Sans KR', sans-serif; 
+			font-size: 1vw; line-height: 2.8vh; 
+			word-break: keep-all;}
+
+		/*나브 바 마우스 오버 시 컬러 체인지*/
+		.changeColor:hover{color: #00FF00;}
+
+		/* 점 마우스 오버 시 컬러 체인지*/
+		.hoverColor{background: white;}
+
+		/*마우스 오버시 텍스트*/
+		#toggleBox{
+			padding-top: 70%;
+			width: auto; height: auto; 
+			color: white;
+			font-family: 'Raleway', sans-serif; 
+			font-weight: 400;
+			font-size: 5.5vw;
+			}
+			#toggleBox2{
+			padding-top: 100%;
+			width: auto; height: auto; 
+			color: white;
+			font-family: 'Raleway', sans-serif; 
+			font-weight: 400;
+			font-size: 5.5vw;
+			}
+</style>
+
+
+</head>
+<body>
+		<main class="container">
+		<section class="text-area">
+			<div id="toggleBox"></div>
+			<div id="toggleBox2"></div>
+			<div id="toggleBox3"></div>
+		</section>
+
+		<section class="img-area">
+				<!--seoul-->
+				<div class="d seoul" id="d1"></div>
+				<div class="d seoul" id="d2"></div>
+				<div class="d seoul" id="d3"></div>
+				<!--Gyeonggi-->
+				<div class="d gg" id="d4"></div>
+				<div class="d gg" id="d5"></div>
+				<div class="d gg" id="d6"></div>
+				<div class="d gg" id="d7"></div>
+				<!--Jeolla-->
+				<div class="d jl" id="d8"></div>
+				<div class="d jl" id="d9"></div>
+				<!--Gangwon-->
+				<div class="d gw" id="d10"></div>
+				<div class="d gw" id="d11"></div>
+				<!--Chungcheong-->
+				<div class="d cc"id="d12"></div>
+				<!--Gyeongsang-->
+				<div class="d gs"id="d13"></div>
+				<div class="d gs"id="d14"></div>
+				<!--Jeju-->
+				<div class="d jj"id="d15"></div>
+			<img src="total-map.png">
+		</section>	
+	</main>
+
+	<nav>
+		<section class="nav1">
+    		<p class="nav-p"><a href="index.html" class="underline">Home</a></p>
+    		<p class="nav-p" style="padding-top: 10%"><a href="about.html" class="underline">About</a></p>
+    	</section>
+    	<section class="nav2">
+    		<p class="nav-p">
+    			<a href="map.html" style="color: #00FF00;">Total View</a></p>
+    		<p class="nav-p" style="padding-top: 3%">
+    			<a href="region.html" class="changeColor">Region View</a></p>
+    	</section>
+    	<section class="nav3">
+    		<p class="nav-p"></p>
+    	</section>
+    	<section class="nav4">
+    		<p>지도 위 점들에 마우스를 올려보세요.</p>
+    	</section>
+	</nav>
+	
+	<script type="text/javascript">
+		//페이지 전환 효과 fade in - fade out
+     document.body.classList.add('fade');
+     document.addEventListener('DOMContentLoaded', () => {
+     window.setTimeout(() => {
+     document.body.classList.remove('fade');
+      });
+    });
+
+		//seoul
+		let dotHover = document.getElementsByClassName("seoul"); 
+		for(let i=0; i<dotHover.length; i++){
+			dotHover[i].onmouseover = function(e){
+			e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "0px 0px 15px white";
+			toggleBox.innerHTML = "Seoul 411 People died last 5 years";
+			}
+			dotHover[i].onmouseout = function(e){e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "";
+			toggleBox.innerHTML = "";
+			}
+		}
+		//gyeonggi
+		let dotHover2 = document.getElementsByClassName("gg"); 
+		for(let i=0; i<dotHover2.length; i++){
+			dotHover2[i].onmouseover = function(e){
+			e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "0px 0px 15px white";
+			toggleBox.innerHTML = "Gyeonggi 1,152 People died last 5 years";
+			}
+			dotHover2[i].onmouseout = function(e){e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "";
+			toggleBox.innerHTML = "";
+			}
+		}
+		//jeolla
+		let dotHover3 = document.getElementsByClassName("jl"); 
+		for(let i=0; i<dotHover3.length; i++){
+			dotHover3[i].onmouseover = function(e){
+			e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "0px 0px 15px white";
+			toggleBox2.innerHTML = "Jeolla 440 People died last 5 years";
+			}
+			dotHover3[i].onmouseout = function(e){e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "";
+			toggleBox2.innerHTML = "";
+			}
+		}
+		//Gangwon
+		let dotHover4 = document.getElementsByClassName("gw"); 
+		for(let i=0; i<dotHover4.length; i++){
+			dotHover4[i].onmouseover = function(e){
+			e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "0px 0px 15px white";
+			toggleBox.innerHTML = "Gangwon 209 People died last 5 years";
+			}
+			dotHover4[i].onmouseout = function(e){e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "";
+			toggleBox.innerHTML = "";
+			}
+		}
+		//Chungcheong
+		let dotHover5 = document.getElementsByClassName("cc"); 
+		for(let i=0; i<dotHover5.length; i++){
+			dotHover5[i].onmouseover = function(e){
+			e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "0px 0px 15px white";
+			toggleBox.innerHTML = "Chungcheong 524 People died last 5 years";
+			}
+			dotHover5[i].onmouseout = function(e){e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "";
+			toggleBox.innerHTML = "";
+			}
+		}
+		//Gyeongsang
+		let dotHover6 = document.getElementsByClassName("gs"); 
+		for(let i=0; i<dotHover6.length; i++){
+			dotHover6[i].onmouseover = function(e){
+			e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "0px 0px 15px white";
+			toggleBox2.innerHTML = "Gyeongsang 744 People died last 5 years";
+			}
+			dotHover6[i].onmouseout = function(e){e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "";
+			toggleBox2.innerHTML = "";
+			}
+		}
+		//Jeju
+		let dotHover7 = document.getElementsByClassName("jj"); 
+		for(let i=0; i<dotHover7.length; i++){
+			dotHover7[i].onmouseover = function(e){
+			e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "0px 0px 15px white";
+			toggleBox2.innerHTML = "Jeju 57 People died last 5 years";
+			}
+			dotHover7[i].onmouseout = function(e){e.target.classList.toggle("hoverColor");
+			e.target.style.boxShadow = "";
+			toggleBox2.innerHTML = "";
+			}
+		}
+	</script>
+
+
+
+</body>
+</html>
